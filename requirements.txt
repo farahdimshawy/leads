@@ -1,0 +1,10 @@
+streamlit
+pandas
+requests
+beautifulsoup4
+lxml
+tqdm
+telethon
+nest_asyncio
+python-dotenv
+matplotlib
