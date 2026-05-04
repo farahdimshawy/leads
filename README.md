@@ -1,16 +1,16 @@
-# Finance Lead Discovery — BG/EU
+# Finance Lead Discovery
 
-Streamlit app that discovers social media leads in the finance/forex space targeting Bulgaria and the EU. Converted from `social_lead_discovery_finance_bg_eu.ipynb`.
+Streamlit app that discovers social media leads in the finance/forex space across global platforms. Converted from `social_lead_discovery_finance_bg_eu.ipynb`.
 
 ---
 
 ## What it does
 
-1. Runs 53 pre-built search queries through the **Serper API** (Google search results) targeting Facebook, Instagram, TikTok, and Telegram.
-2. Scores each result by **commercial fit** — use case (educator, signal provider, broker, etc.), asset interest (forex, gold, stocks), region match, and intent signals.
-3. Filters by platform, risk level, use case, and minimum score.
+1. Runs 107 pre-built search queries through the **Serper API** (Google search results) targeting Facebook, Instagram, TikTok, and Telegram.
+2. Scores each result by **commercial fit** — use case (educator, signal provider, broker, etc.), asset interest (forex, gold, stocks, indices), and intent signals.
+3. Filters by platform, risk level, use case, and minimum score — filters also control which queries run, so only relevant searches fire.
 4. Displays results in a sortable table with stats charts.
-5. Exports two CSVs: all filtered leads, and high-quality Telegram-only leads.
+5. Exports a filtered CSV with quality and platform checkboxes.
 
 Optionally fetches messages directly from Telegram channels via the Telethon MTProto client.
 
@@ -20,7 +20,8 @@ Optionally fetches messages directly from Telegram channels via the Telethon MTP
 
 | File | Purpose |
 |---|---|
-| `app.py` | Streamlit app — all logic and UI in one file |
+| `app.py` | Streamlit UI only |
+| `core.py` | All logic — queries, scoring, filtering, Telegram helpers |
 | `.env` | API keys — **never commit this** |
 | `requirements.txt` | Python dependencies |
 | `.gitignore` | Excludes `.env`, session files, and CSV exports |
@@ -62,12 +63,12 @@ The app opens in your browser at `http://localhost:8501`.
 
 1. **Sidebar** shows green/red dots for each API key status.
 2. Adjust filters (min score, platforms, use cases, assets) as needed.
-3. Click **▶ Run Discovery** — a live progress block shows each query.
+3. Click **▶ Run Discovery** — only queries matching your selected platforms, use cases, and assets will run.
 4. Results appear in three tabs:
-   - **Leads** — sortable filtered table
+   - **Leads** — sortable filtered table with clickable links
    - **Stats** — use case and platform charts
    - **Telegram** — Telegram-only leads subset
-5. Click a **Download** button to export CSV.
+5. Use the **Export** checkboxes to select quality tiers and platforms, then click **Download**.
 
 ---
 
